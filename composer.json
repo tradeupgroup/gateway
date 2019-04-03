@@ -1,5 +1,5 @@
 {
-  "name": "brunopaz/php-sdk-gateway",
+  "name": "tradeupgroup/php-sdk-gateway",
   "description": "SDK PHP for Gateway",
   "type": "library",
   "authors": [
@@ -17,10 +17,5 @@
   },
   "require": {
     "php": ">=5.4.0"
-  },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "1.0-dev"
-    }
   }
 }

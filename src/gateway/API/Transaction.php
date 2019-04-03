@@ -132,10 +132,10 @@
 
 
         /**
-         * @param Order $order
+         * @param array $order
          * @return \Gateway\API\Order
          */
-        public function Order(Order $order = null)
+        public function Order(array $order = null)
         {
             $this->order = $order ? $order : new Order();
             return $this->order;
@@ -151,11 +151,11 @@
 
 
         /**
-         * @param Payment $payment
+         * @param array $payment
          * @return \Gateway\API\Payment
          * @throws \Exception
          */
-        public function Payment(Payment $payment = null)
+        public function Payment(array $payment = null)
         {
             $this->payment = $payment ? $payment : new Payment();
             $this->payment->setAmount($this->getOrder()->getTotalAmount());
@@ -172,10 +172,10 @@
 
 
         /**
-         * @param Customer $customer
+         * @param array $customer
          * @return \Gateway\API\Customer
          */
-        public function Customer(Customer $customer = null)
+        public function Customer(array $customer = null)
         {
             $this->billing = $customer ? $customer : new Customer();
             return $this->billing;
@@ -266,10 +266,10 @@
 
 
         /**
-         * @param Fraud $fraud
+         * @param array $fraud
          * @return \Gateway\API\Fraud
          */
-        public function FraudData(Fraud $fraud = null)
+        public function FraudData(array $fraud = null)
         {
             $this->fraud = "true";
             $this->fraudData = $fraud ? $fraud : new Fraud();

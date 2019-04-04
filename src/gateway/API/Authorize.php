@@ -55,12 +55,12 @@
                 "version"      => $transaction->getVersion(),
                 "verification" => $transaction->getVerification(),
                 "authorize"    => [
-                    "order"     => $transaction->getOrder(),
-                    "payment"   => $transaction->getPayment(),
-                    "billing"   => $transaction->getCustomer(),
+                    "order"     => array_filter($transaction->getOrder()->jsonSerialize()),
+                    "payment"   => array_filter($transaction->getPayment()->jsonSerialize()),
+                    "billing"   => array_filter($transaction->getCustomer()->jsonSerialize()),
                     "urlReturn" => $transaction->getUrlReturn(),
                     "fraud"     => $transaction->getFraud(),
-                    "fraudData" => $transaction->getFraudData(),
+                    "fraudData" => $transaction->getFraudData()->jsonSerialize(),
                 ]
             ];
 

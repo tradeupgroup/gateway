@@ -52,15 +52,14 @@
          */
         public function Authorize(Transaction $transaction)
         {
-            $authorize = new Authorize($transaction, $this->credential);
-
             $token = new Tokenization($this->credential, $transaction->getPayment()->getCard(),
                 $transaction->getCustomer());
             $transaction->getPayment()->setTokenCard($token->getTokenCard());
 
+            $authorize = new Authorize($transaction, $this->credential);
 
             $request = new Request($this->credential);
-            $this->response = $request->post("/v1/receiver", $authorize->toJSON());
+            $this->response = $request->post("/v1/receiver", json_encode($authorize->getJsonRequest()));
 
             return $this;
         }

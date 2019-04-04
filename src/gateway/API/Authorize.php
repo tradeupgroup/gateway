@@ -60,7 +60,6 @@
                     "billing"   => array_filter($transaction->getCustomer()->jsonSerialize()),
                     "urlReturn" => $transaction->getUrlReturn(),
                     "fraud"     => $transaction->getFraud(),
-                    "fraudData" => $transaction->getFraudData()->jsonSerialize(),
                 ]
             ];
 

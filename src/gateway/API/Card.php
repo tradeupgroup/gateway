@@ -47,7 +47,19 @@
          */
         private $tokenCard;
 
-
+        /**
+         * @param array $card
+         * @return Card
+         */
+        public function fill(array $card)
+        {
+            foreach ($this as $key => $value) {
+                if (array_key_exists($key, $card)) {
+                    $this->$key = $card[$key];
+                }
+            }
+            return $this;
+        }
 
         /**
          * @return mixed

@@ -64,6 +64,19 @@
          */
         private $email = "";
 
+        /**
+         * @param array $customer
+         * @return Customer
+         */
+        public function fill(array $customer)
+        {
+            foreach ($this as $key => $value) {
+                if (array_key_exists($key, $customer)) {
+                    $this->$key = $customer[$key];
+                }
+            }
+            return $this;
+        }
 
         /**
          * @return array|mixed

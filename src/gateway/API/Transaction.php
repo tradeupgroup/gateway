@@ -60,7 +60,6 @@
          */
         private $fraudData;
 
-
         /**
          * Transaction constructor.
          */
@@ -177,7 +176,7 @@
          */
         public function Customer(array $customer = null)
         {
-            $this->billing = $customer ? $customer : new Customer();
+            $this->billing = $customer ? (new Customer())->fill($customer) : new Customer();
             return $this->billing;
         }
 

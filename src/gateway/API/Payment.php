@@ -167,11 +167,12 @@
         }
 
         /**
+         * @param array $card
          * @return Card
          */
-        public function Card()
+        public function Card(array $card = null)
         {
-            $this->card = new Card();
+            $this->card = $card ? (new Card())->fill($card) : new Card();
             return $this->card;
         }
 

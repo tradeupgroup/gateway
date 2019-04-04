@@ -71,11 +71,11 @@
          */
         public function Sale(Transaction $transaction)
         {
-            $sale = new Sale($transaction, $this->credential);
-
             $token = new Tokenization($this->credential, $transaction->getPayment()->getCard(),
                 $transaction->getCustomer());
             $transaction->getPayment()->setTokenCard($token->getTokenCard());
+
+            $sale = new Sale($transaction, $this->credential);
 
             $request = new Request($this->credential);
             $this->response = $request->post("/v1/receiver", $sale->toJSON());

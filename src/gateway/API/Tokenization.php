@@ -34,8 +34,6 @@
         public function __construct(Credential $credential, Card $card, Customer $customer)
         {
             $request = new Request($credential);
-            $customer = array_filter($customer->jsonSerialize());
-            unset($customer['cpf']);
             $json["transaction-request"] = [
                 "version"      => "1.0.0",
                 "verification" => [

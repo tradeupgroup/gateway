@@ -32,5 +32,5 @@
         public const ADIQ                        = 28;
         public const PAYPAL_PLUS                 = 29;
         public const GETNET_V1                   = 30;
-
+        public const TRADE_UP                    = 33;
     }

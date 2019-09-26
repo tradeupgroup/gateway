@@ -157,7 +157,11 @@
         public function Payment(array $payment = null)
         {
             $this->payment = $payment ? $payment : new Payment();
-            $this->payment->setAmount($this->getOrder()->getTotalAmount());
+
+            if($this->getOrder()) {
+                $this->payment->setAmount($this->getOrder()->getTotalAmount());
+            }
+
             return $this->payment;
         }
 

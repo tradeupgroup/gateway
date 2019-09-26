@@ -444,12 +444,12 @@
         }
 
         /**
-         * @param int $payments
+         * @param $number
          * @return string
          */
-        private function getMethodBasedInPaymentsNumber($payments)
+        private function getMethodBasedInPayments($number)
         {
-            $this->method = $payments === 1
+            $this->method = $number === 1
                 ? Methods::CREDIT_CARD_NO_INTEREST
                 : Methods::CREDIT_CARD_INTEREST_BY_MERCHANT;
 

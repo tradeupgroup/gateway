@@ -66,20 +66,40 @@
 
         /**
          * @param Transaction $transaction
+         * @param bool $generateToken
          * @return $this
          * @throws \Exception
          */
-        public function Sale(Transaction $transaction)
+        public function Sale(Transaction $transaction, $generateToken = false)
         {
-            $token = new Tokenization($this->credential, $transaction->getPayment()->getCard(),
-                $transaction->getCustomer());
-            $transaction->getPayment()->setTokenCard($token->getTokenCard());
+            if($generateToken) {
+                $token = new Tokenization(
+                    $this->credential,
+                    $transaction->getPayment()->getCard(),
+                    $transaction->getCustomer());
+
+                $transaction->getPayment()->setTokenCard($token->getTokenCard());
+            }
 
             $sale = new Sale($transaction, $this->credential);
 
             $request = new Request($this->credential);
             $this->response = $request->post("/v1/receiver", $sale->toJSON());
             return $this;
+        }
+
+        /**
+         * @param Transaction $transaction
+         * @return Tokenization
+         * @throws \Exception
+         */
+        public function Tokenization(Transaction $transaction)
+        {
+            return new Tokenization(
+                $this->credential,
+                $transaction->getPayment()->getCard(),
+                $transaction->getCustomer()
+            );
         }
 
         /**

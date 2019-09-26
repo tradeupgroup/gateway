@@ -443,5 +443,16 @@
             return $this;
         }
 
+        /**
+         * @param $number
+         * @return string
+         */
+        private function getMethodBasedInPayments($number)
+        {
+            $this->method = $number === 1
+                ? Methods::CREDIT_CARD_NO_INTEREST
+                : Methods::CREDIT_CARD_INTEREST_BY_MERCHANT;
 
+            return $this;
+        }
     }

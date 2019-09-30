@@ -51,9 +51,9 @@
          * @return $this
          * @throws \Exception
          */
-        public function Authorize(Transaction $transaction, $tokenized = false)
+        public function Authorize(Transaction $transaction)
         {
-            if($tokenized === false) {
+            if($transaction->getPayment()->getTokenCard() === null) {
                 $token = $this->Tokenization($transaction);
                 $transaction->getPayment()->setTokenCard($token->getTokenCard());
             }
@@ -72,9 +72,9 @@
          * @return $this
          * @throws \Exception
          */
-        public function Sale(Transaction $transaction, $tokenized = false)
+        public function Sale(Transaction $transaction)
         {
-            if($tokenized === false) {
+            if($transaction->getPayment()->getTokenCard() === null) {
                 $token = $this->Tokenization($transaction);
                 $transaction->getPayment()->setTokenCard($token->getTokenCard());
             }

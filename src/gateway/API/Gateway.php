@@ -47,14 +47,16 @@
 
         /**
          * @param Transaction $transaction
+         * @param bool $tokenized
          * @return $this
          * @throws \Exception
          */
         public function Authorize(Transaction $transaction)
         {
-            $token = new Tokenization($this->credential, $transaction->getPayment()->getCard(),
-                $transaction->getCustomer());
-            $transaction->getPayment()->setTokenCard($token->getTokenCard());
+            if($transaction->getPayment()->getTokenCard() === null) {
+                $token = $this->Tokenization($transaction);
+                $transaction->getPayment()->setTokenCard($token->getTokenCard());
+            }
 
             $authorize = new Authorize($transaction, $this->credential);
 
@@ -66,18 +68,14 @@
 
         /**
          * @param Transaction $transaction
-         * @param bool $generateToken
+         * @param bool $tokenized
          * @return $this
          * @throws \Exception
          */
-        public function Sale(Transaction $transaction, $generateToken = false)
+        public function Sale(Transaction $transaction)
         {
-            if($generateToken) {
-                $token = new Tokenization(
-                    $this->credential,
-                    $transaction->getPayment()->getCard(),
-                    $transaction->getCustomer());
-
+            if($transaction->getPayment()->getTokenCard() === null) {
+                $token = $this->Tokenization($transaction);
                 $transaction->getPayment()->setTokenCard($token->getTokenCard());
             }
 

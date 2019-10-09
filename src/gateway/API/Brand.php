@@ -21,7 +21,7 @@ abstract class Brand
     const AMEX = "amex";
     const AURA = "aura";
     const JCB = "jcb";
-    const HYPERCARD = "hypercard";
+    const HYPERCARD = "hipercard";
     const SOROCRED = "sorocred";
     const CABAL = "cabal";
     const MAESTRO = "maestro";
